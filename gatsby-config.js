@@ -14,6 +14,7 @@ module.exports = {
         path: `${__dirname}/content/posts`,
       },
     },
+    'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-transformer-remark',
@@ -45,7 +46,6 @@ module.exports = {
         pathToConfigModule: 'config/typography.js',
       },
     },
-    'gatsby-plugin-sharp',
     'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',

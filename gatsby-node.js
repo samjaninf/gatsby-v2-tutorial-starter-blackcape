@@ -7,6 +7,10 @@ exports.createPages = ({ graphql, actions }) => {
     const postTemplate = path.resolve('src/templates/post.jsx');
     const tagPage = path.resolve('src/pages/tags.jsx');
     const tagPosts = path.resolve('src/templates/tag.jsx');
+    
+    // BlackCape Start
+    const comicsPage = path.resolve('src/pages/comics.jsx');
+    const comicsComic = path.resolve('src/templates/comic-test.jsx');
 
     resolve(
       graphql(
@@ -29,7 +33,9 @@ exports.createPages = ({ graphql, actions }) => {
         `
       ).then(result => {
         if (result.errors) {
-          return reject(result.errors);
+          // return reject(result.errors);
+          result.errors.forEach(e => console.error(e.toString()))
+          return Promise.reject(result.errors)
         }
 
         const posts = result.data.allMarkdownRemark.edges;
@@ -49,6 +55,15 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         const tags = Object.keys(postsByTag);
+
+        createPage({
+          path: '/comics',
+          // component: comicsPage,
+          component: comicsComic,
+          // context: {
+          //   comics
+          // },
+        });
 
         createPage({
           path: '/tags',
