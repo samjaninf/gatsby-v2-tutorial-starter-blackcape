@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { graphql, Link } from 'gatsby';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import { Layout, Container, Content } from 'layouts';
-import { TagsBlock, Header, SEO } from 'components';
+import { Layout, Container, Content } from '../layouts';
+import { TagsBlock, Header, SEO } from '../components';
 import '../styles/prism';
-import axios from "axios";
+import axios from 'axios';
 
 const SuggestionBar = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ class ComicsFetchingTest extends Component {
       .get(`http://localhost:4567/`)
       .then(results => {
         if (results.errors) {
-          throw results.errors
+          throw results.errors;
         }
         console.log(results);
       });
@@ -63,7 +63,7 @@ class ComicsFetchingTest extends Component {
             {prev && (
               <Link to={prev.frontmatter.path}>
                 Previous
-              <h3>{prev.frontmatter.title}</h3>
+                <h3>{prev.frontmatter.title}</h3>
               </Link>
             )}
           </PostSuggestion>
@@ -71,7 +71,7 @@ class ComicsFetchingTest extends Component {
             {next && (
               <Link to={next.frontmatter.path}>
                 Next
-              <h3>{next.frontmatter.title}</h3>
+                <h3>{next.frontmatter.title}</h3>
               </Link>
             )}
           </PostSuggestion>
@@ -89,7 +89,7 @@ class ComicsFetchingTest extends Component {
 //   const title = post.frontmatter.title;
 //   const date = post.frontmatter.date;
 //   const html = post.html;
-  
+
 //   return (
 //     <Layout>
 //       <SEO

@@ -3,8 +3,8 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { Layout, Container } from 'layouts';
-import { Header } from 'components';
+import { Layout, Container } from '../layouts';
+import { Header } from '../components';
 import config from '../../config/site';
 
 const StyledLink = styled(Link)`
@@ -26,33 +26,33 @@ const Information = styled.div`
   }
 `;
 
-const Tag = ({ pageContext }) => {
-  const { posts, tagName } = pageContext;
-  const upperTag = tagName.charAt(0).toUpperCase() + tagName.slice(1);
-  return (
-    <Layout>
-      <Helmet title={`${tagName} | ${config.siteTitle}`} />
-      <Header title={upperTag}>
-        <StyledLink to="/tags">All Tags</StyledLink>
-      </Header>
-      <Container>
-        <Information>
-          {posts.map((post, index) => (
-            <Link key={index} to={post.frontmatter.path}>
-              <h3>{post.frontmatter.title}</h3>
-            </Link>
-          ))}
-        </Information>
-      </Container>
-    </Layout>
-  );
-};
+// const Tag = ({ pageContext }) => {
+//   const { posts, tagName } = pageContext;
+//   const upperTag = tagName.charAt(0).toUpperCase() + tagName.slice(1);
+//   return (
+//     <Layout>
+//       <Helmet title={`${tagName} | ${config.siteTitle}`} />
+//       <Header title={upperTag}>
+//         <StyledLink to="/tags">All Tags</StyledLink>
+//       </Header>
+//       <Container>
+//         <Information>
+//           {posts.map((post, index) => (
+//             <Link key={index} to={post.frontmatter.path}>
+//               <h3>{post.frontmatter.title}</h3>
+//             </Link>
+//           ))}
+//         </Information>
+//       </Container>
+//     </Layout>
+//   );
+// };
 
-export default Tag;
+// export default Tag;
 
-Tag.propTypes = {
-  pageContext: PropTypes.shape({
-    posts: PropTypes.array,
-    tagname: PropTypes.string,
-  }),
-};
+// Tag.propTypes = {
+//   pageContext: PropTypes.shape({
+//     posts: PropTypes.array,
+//     tagname: PropTypes.string,
+//   }),
+// };

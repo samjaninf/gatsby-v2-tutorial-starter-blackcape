@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import Headroom from 'react-headroom';
 import logo from '../../static/logo/header-logo.png';
+import { login, isAuthenticated, getProfile, logout } from '../services/auth';
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -27,7 +28,13 @@ const Nav = styled.nav`
   }
 `;
 
-const NavBar = () => (
+if (isAuthenticated()) {
+  // login();
+  // return <p>Redirecting to login...</p>;
+  const user = getProfile();
+}
+
+const NavBar = ({ user }) => (
   <Headroom calcHeightOnResize disableInlineStyles>
     <StyledLink to="/">
       <img src={logo} alt="Gatsby Logo" />
@@ -37,6 +44,35 @@ const NavBar = () => (
       <Link to="/comics">Comics</Link>
       <Link to="/blog">Blog</Link>
       <Link to="/about">About</Link>
+      {user ? (
+        <>
+          <Link to="/account" user={user}>
+            {user.name}
+          </Link>
+          <a
+            href="#logout"
+            onClick={e => {
+              logout();
+              e.preventDefault();
+            }}
+          >
+            Log Out
+          </a>
+        </>
+      ) : (
+        <>
+          <Link to="/account">Account</Link>
+          <a
+            href="#login"
+            onClick={e => {
+              logout();
+              e.preventDefault();
+            }}
+          >
+            Log In
+          </a>
+        </>
+      )}
     </Nav>
   </Headroom>
 );
